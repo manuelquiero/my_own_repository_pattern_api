@@ -12,7 +12,7 @@ namespace domain.Interfaces
         Task<List<Student>> GetAll();
         Task<Student> Get(int id);
         Task<Student> Create(Student student);
-        bool Update(int id);
-        bool Delete(int id);
+        Task<Student> Update(Student student);
+        Task<bool> Delete(int id);
     }
 }

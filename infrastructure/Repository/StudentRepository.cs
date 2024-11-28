@@ -22,18 +22,18 @@ namespace infrastructure.Repository
             return student;
         }
 
-        public bool Update(int id)
+        public async Task<Student> Update(Student student)
         {
-            _students.Where(x => x.Id == id).Select(y => new Student
+            _students.Where(x => x.Id == student.Id).Select(y => new Student
             {
                 Name = y.Name,
                 Age = y.Age,
                 Sex = y.Sex,
             });
-            return _students.Any(x => x.Id == id);
+            return _students.FirstOrDefault(y => y.Id == student.Id);
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             int index = _students.FindIndex(x => x.Id == id);
             _students.RemoveAt(index);
