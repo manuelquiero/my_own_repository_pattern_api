@@ -13,6 +13,5 @@ namespace domain.Models
         public string? Name { get; set; }
         public int Age { get; set; }
         public Sex Sex { get; set; }
-        public DateTime? Birthdate { get; set;}
     }
 }

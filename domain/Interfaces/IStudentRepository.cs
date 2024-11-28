@@ -9,9 +9,9 @@ namespace domain.Interfaces
 {
     public interface IStudentRepository
     {
-        Student GetAll();
-        Student Get(int id);
-        Student Create(Student student);
+        Task<List<Student>> GetAll();
+        Task<Student> Get(int id);
+        Task<Student> Create(Student student);
         bool Update(int id);
         bool Delete(int id);
     }
