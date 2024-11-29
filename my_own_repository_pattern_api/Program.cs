@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddWebAPI();
 builder.Services.AddInfrastructure();
 builder.Services.AddApplication();
-builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddSingleton<IStudentRepository, StudentRepository>();
 
 
 var app = builder.Build();

@@ -10,7 +10,7 @@ namespace infrastructure.Repository
         {
             new Student { Id = 1, Name = "Hezekiah", Sex = Sex.Male, Age = 27 },
             new Student { Id = 2, Name = "Hunter", Sex = Sex.Male, Age = 14 },
-            new Student { Id = 1, Name = "Hansel", Sex = Sex.Male, Age = 29 }
+            new Student { Id = 3, Name = "Hansel", Sex = Sex.Male, Age = 29 }
         };
         public async Task<List<Student>> GetAll() => _students;
         
@@ -24,12 +24,14 @@ namespace infrastructure.Repository
 
         public async Task<Student> Update(Student student)
         {
-            _students.Where(x => x.Id == student.Id).Select(y => new Student
+            var selectedStudent = _students.FirstOrDefault(x => x.Id == student.Id);
+            if(selectedStudent != null)
             {
-                Name = y.Name,
-                Age = y.Age,
-                Sex = y.Sex,
-            });
+                selectedStudent.Name = student.Name;
+                selectedStudent.Age = student.Age;
+                selectedStudent.Sex = student.Sex;
+            }
+
             return _students.FirstOrDefault(y => y.Id == student.Id);
         }
 
