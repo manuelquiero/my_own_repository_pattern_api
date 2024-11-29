@@ -1,12 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using application.Services.StudentService.Query;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace my_own_repository_pattern_api.Controllers
 {
+    [Route("api")]
+    [ApiController]
     public class StudentsController : Controller
     {
-        public IActionResult Index()
+        private readonly IMediator _mediatr;
+        public StudentsController(IMediator mediatr) 
+        { 
+            _mediatr = mediatr;
+        }
+        [HttpGet("get-all-students")]
+        public async Task<IActionResult> GetAllStudents()
         {
-            return View();
+            var students = await _mediatr.Send(new GetAllStudentQuery());
+            return Ok(students);
         }
     }
 }
